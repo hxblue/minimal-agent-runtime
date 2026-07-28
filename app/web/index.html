@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="A transparent workbench for a minimal Agent Runtime." />
+    <title>Runtime Workbench</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#composer">跳到消息输入</a>
+    <div class="shell">
+      <header class="masthead">
+        <div class="brand-block">
+          <p class="eyebrow">FRAMEWORK-FREE / AGENT LAB</p>
+          <h1>Runtime<br /><span>Workbench</span></h1>
+        </div>
+        <div class="loop-rail" aria-label="Agent 运行循环">
+          <div class="loop-node" data-phase="input"><b>01</b><span>INPUT</span></div>
+          <i aria-hidden="true"></i>
+          <div class="loop-node" data-phase="model"><b>02</b><span>MODEL</span></div>
+          <i aria-hidden="true"></i>
+          <div class="loop-node tool" data-phase="tool"><b>03</b><span>TOOL</span></div>
+          <i aria-hidden="true"></i>
+          <div class="loop-node" data-phase="continue"><b>04</b><span>CONTINUE</span></div>
+        </div>
+        <div class="health-block">
+          <span id="health-dot" class="health-dot" aria-hidden="true"></span>
+          <div><strong id="health-label">CHECKING</strong><small id="health-detail">Runtime status</small></div>
+        </div>
+      </header>
+
+      <aside class="sessions-panel" aria-label="会话列表">
+        <div class="panel-heading">
+          <div><small>SESSION LEDGER</small><h2>会话台账</h2></div>
+          <button id="new-session" class="icon-button" type="button" title="新建会话">＋</button>
+        </div>
+        <div id="session-list" class="session-list" role="list"></div>
+        <div class="tool-index">
+          <small>REGISTERED TOOLS</small>
+          <div id="tool-list" class="tool-list"></div>
+        </div>
+      </aside>
+
+      <main class="conversation-panel">
+        <div class="conversation-heading">
+          <div>
+            <small>ACTIVE SESSION</small>
+            <h2 id="active-title">准备工作区</h2>
+          </div>
+          <code id="active-id">no-session</code>
+        </div>
+        <section id="messages" class="messages" aria-live="polite">
+          <div class="empty-state">
+            <span>◌</span>
+            <h3>先建立一个 Session</h3>
+            <p>每个 Session 都拥有独立的消息、Memory 与 Todo。</p>
+          </div>
+        </section>
+        <form id="composer" class="composer">
+          <label for="message-input">向 Agent 下达任务</label>
+          <div class="composer-row">
+            <textarea
+              id="message-input"
+              rows="2"
+              maxlength="20000"
+              placeholder="例如：计算 (18 + 24) × 3，并告诉我结果"
+              required
+            ></textarea>
+            <button id="send-button" type="submit"><span>RUN</span><b>↗</b></button>
+          </div>
+          <p id="composer-status" class="composer-status">Enter 换行，Ctrl + Enter 运行</p>
+        </form>
+      </main>
+
+      <aside class="trace-panel" aria-label="运行 Trace">
+        <div class="panel-heading trace-heading">
+          <div><small>FLIGHT RECORDER</small><h2>运行轨迹</h2></div>
+          <span id="event-count" class="event-count">00</span>
+        </div>
+        <div id="trace-list" class="trace-list">
+          <div class="trace-empty">运行一次任务后，这里会显示模型与工具事件。</div>
+        </div>
+      </aside>
+    </div>
+    <script src="/static/app.js" defer></script>
+  </body>
+</html>
+
