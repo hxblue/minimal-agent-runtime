@@ -21,3 +21,4 @@ data/*.db-*
 *.mkv
 *.webm
 Agent架构设计面试八股答案.md
+!/submission/操作录屏.mp4
